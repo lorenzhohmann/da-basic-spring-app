@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * @Author: Lorenz Hohmann (ID: 1259904)
+ * @Date: 01.11.2023
+ */
 public class DatabaseConnection {
 
   private static final String JDBC_URL = "jdbc:mysql://localhost:3306/master_da_ex1";

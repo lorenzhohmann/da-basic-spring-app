@@ -1,5 +1,9 @@
 package de.lorenz.basic_spring_setup;
 
+/**
+ * @Author: Lorenz Hohmann (ID: 1259904)
+ * @Date: 01.11.2023
+ */
 public class Person {
 
 	private String name;

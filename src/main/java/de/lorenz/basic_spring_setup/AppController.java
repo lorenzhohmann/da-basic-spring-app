@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * @Author: Lorenz Hohmann (ID: 1259904)
+ * @Date: 01.11.2023
+ */
 @Controller
 @RequestMapping("/")
 public class AppController {
@@ -33,6 +37,10 @@ public class AppController {
     return "index";
   }
 
+  /**
+   * @Author: Lorenz Hohmann (ID: 1259904)
+   * @Date: 01.11.2023
+   */
   @PostMapping
   public String postForm(@ModelAttribute Person person, Model model) {
     // connect form data with model
@@ -50,6 +58,9 @@ public class AppController {
 
   /**
    * This method is called to setup the database scheme if it does not exists.
+   * 
+   * @Author: Lorenz Hohmann (ID: 1259904)
+   * @Date: 01.11.2023
    */
   private void setupDatabaseScheme() {
     try {
@@ -71,6 +82,9 @@ public class AppController {
 
   /**
    * This method is called to add an entry to the database.
+   * 
+   * @Author: Lorenz Hohmann (ID: 1259904)
+   * @Date: 01.11.2023
    */
   private void addEntryToDatabase(Person person) {
     try {
@@ -88,6 +102,9 @@ public class AppController {
 
   /**
    * This method is called to get all entries from the database.
+   * 
+   * @Author: Lorenz Hohmann (ID: 1259904)
+   * @Date: 01.11.2023
    */
   private List<Person> getEntriesFromDatabase() {
     List<Person> persons = new ArrayList<Person>();
