@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -24,11 +24,6 @@ import jakarta.servlet.http.HttpServletResponse;
 public class APIController {
 
   private String apiURL = "https://api.thecatapi.com/v1/images/search";
-  private RestTemplate restTemplate;
-
-  APIController() {
-    restTemplate = new RestTemplate();
-  }
 
   /**
    * @Author: Lorenz Hohmann (ID: 1259904)
@@ -42,7 +37,8 @@ public class APIController {
     try {
       ObjectMapper mapper = new ObjectMapper();
 
-      ResponseEntity<String> response = restTemplate.exchange(apiURL, HttpMethod.GET, null, String.class);
+      WebClient client = WebClient.create(apiURL);
+      ResponseEntity<String> response = client.method(HttpMethod.GET).retrieve().toEntity(String.class).block();
       JsonNode root = mapper.readTree(response.getBody());
 
       System.out.println("Statuscode: " + response.getStatusCode());
