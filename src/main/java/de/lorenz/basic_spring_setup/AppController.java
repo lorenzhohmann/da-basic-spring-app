@@ -11,30 +11,28 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @Author: Lorenz Hohmann (ID: 1259904)
  * @Date: 01.11.2023
  */
-@Controller
-@RequestMapping("/")
+@RestController
+@RequestMapping("/form")
 public class AppController {
 
   @GetMapping
-  public String showIndex(Model model) {
+  public List<Person> getPersons(Model model) {
 
     // setup database scheme
     this.setupDatabaseScheme();
 
     // get entries from database
     List<Person> persons = this.getEntriesFromDatabase();
-    model.addAttribute("persons", persons);
 
-    // add empty person to model
-    model.addAttribute("person", new Person());
-
-    return "index";
+    return persons;
   }
 
   /**
@@ -42,18 +40,11 @@ public class AppController {
    * @Date: 01.11.2023
    */
   @PostMapping
-  public String postForm(@ModelAttribute Person person, Model model) {
-    // connect form data with model
-    model.addAttribute("person", person);
+  public String postForm(@RequestBody Person person, Model model) {
 
-    // add entry to database
     this.addEntryToDatabase(person);
 
-    // get entries from database
-    List<Person> persons = this.getEntriesFromDatabase();
-    model.addAttribute("persons", persons);
-
-    return "index";
+    return "OK";
   }
 
   /**
